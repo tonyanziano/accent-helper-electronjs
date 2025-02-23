@@ -1,0 +1,23 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.app-container {
+  padding: 24px;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.special-character-button {
+  display: block;
+  width: 48px;
+  height: 24px;
+}

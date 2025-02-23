@@ -1,10 +1,11 @@
 const { join } = require('path');
-const { app, BrowserWindow, ipcMain, clipboard } = require('electron');
+const { app, BrowserWindow, ipcMain, clipboard, Menu } = require('electron');
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    frame: false, // we want a frameless window
+    width: 350,
+    height: 150,
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
     }
@@ -18,6 +19,9 @@ ipcMain.on('write-text-to-clipboard', (_ev, { text }) => {
   clipboard.writeText(text);
   console.log(`Wrote ${text} to clipboard.`);
 });
+
+// hide the menu bar
+Menu.setApplicationMenu(null);
 
 app.whenReady().then(() => {
   createWindow();

@@ -7,5 +7,5 @@ export const SpecialCharacterButton = ({ text }) => {
     console.log('wrote to clipboard');
   }, [text]);
 
-  return <button onClick={handleOnClick}>{text}</button>;
+  return <button className='special-character-button' onClick={handleOnClick}>{text}</button>;
 };
