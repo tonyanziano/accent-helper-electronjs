@@ -2,8 +2,9 @@
   "name": "accent-helper-electronjs",
   "version": "1.0.0",
   "description": "Native desktop app that allows users to type accented characters with US keyboards written using ElectronJS.",
-  "main": "src/node/main.js",
+  "main": "src/main/main.js",
   "scripts": {
+    "build": "esbuild ./src/renderer/app.js --bundle --outfile=dist/app.js --loader:.js=jsx",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +19,11 @@
   },
   "homepage": "https://github.com/tonyanziano/accent-helper-electronjs#readme",
   "devDependencies": {
-    "electron": "^34.2.0"
+    "electron": "^34.2.0",
+    "esbuild": "0.25.0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

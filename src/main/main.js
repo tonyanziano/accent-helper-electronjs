@@ -10,7 +10,7 @@ const createWindow = () => {
     }
   });
 
-  win.loadFile(join(__dirname, '../browser/index.html'));
+  win.loadFile(join(__dirname, '../renderer/index.html'));
 };
 
 // setup IPC handlers
