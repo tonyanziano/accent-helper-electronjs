@@ -1,5 +1,5 @@
 import React from 'react';
-import { SpecialCharacterButton } from './SpecialCharacterButtond';
+import { SpecialCharacterButton } from './SpecialCharacterButton';
 
 export const App = () => {
   return (
