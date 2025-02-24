@@ -5,19 +5,44 @@ html, body {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
+  background-color: #1b1c26;
 }
 
 .app-container {
   padding: 24px;
+  padding-bottom: 20px; /* account for 4px of margin on the bottom button row */
 }
 
 .row {
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 4px;
 }
 
 .special-character-button {
   display: block;
   width: 48px;
   height: 24px;
+  margin-right: 4px;
+}
+
+button {
+  appearance: none;
+  border-radius: 4px;
+  display: block;
+  width: 48px;
+  height: 24px;
+  cursor: pointer;
+  background-color: #242526;
+  color: #e3e3e3;
+  border-style: none;
+  border: 1px solid #444950;
+}
+
+button:hover {
+  background-color: #363739;
+}
+
+button:active {
+  background-color: #515255;
 }
