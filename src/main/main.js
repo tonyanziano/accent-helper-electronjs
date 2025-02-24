@@ -10,7 +10,8 @@ const createWindow = () => {
     height: WINDOW_HEIGHT,
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
-    }
+    },
+    icon: join(__dirname, '../../resources/256x256-icon.ico'),
   });
 
   win.loadFile(join(__dirname, '../renderer/index.html'));
