@@ -1,6 +1,11 @@
-import React, { useCallback } from 'react';
+import * as React from 'react';
+import { useCallback } from 'react';
 
-export const SpecialCharacterButton = ({ text }) => {
+type SpecialCharacterButtonProps = {
+  text: string;
+}
+
+export const SpecialCharacterButton: React.FC<SpecialCharacterButtonProps> = ({ text }) => {
   const handleOnClick = useCallback(() => {
     console.log('clicked button');
     window.clipboard.writeTextToClipboard(text);

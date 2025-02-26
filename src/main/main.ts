@@ -1,8 +1,8 @@
-const { join } = require('path');
-const { app, BrowserWindow, ipcMain, clipboard, Menu, globalShortcut, screen } = require('electron');
-const { WINDOW_HEIGHT, WINDOW_WIDTH, CURSOR_OFFSET_X, CURSOR_OFFSET_Y } = require('./constants');
+import { join } from 'path';
+import { app, BrowserWindow, ipcMain, clipboard, Menu, globalShortcut, screen } from 'electron';
+import { WINDOW_HEIGHT, WINDOW_WIDTH, CURSOR_OFFSET_X, CURSOR_OFFSET_Y } from './constants';
 
-let win;
+let win: BrowserWindow | undefined;
 const createWindow = () => {
   win = new BrowserWindow({
     frame: false, // we want a frameless window
@@ -14,7 +14,8 @@ const createWindow = () => {
     icon: join(__dirname, '../../resources/256x256-icon.ico'),
   });
 
-  win.loadFile(join(__dirname, '../renderer/index.html'));
+  console.log('loading window');
+  win.loadFile(join(__dirname, '../../dist/index.html'));
 };
 
 // setup IPC handlers
@@ -46,6 +47,7 @@ app.whenReady().then(() => {
     }
   });
 
+  console.log('creating window');
   createWindow();
 });
 

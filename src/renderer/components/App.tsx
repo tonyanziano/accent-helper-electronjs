@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { SpecialCharacterButton } from './SpecialCharacterButton';
 import { specialCharactersLower, specialCharactersUpper } from '../constants';
 

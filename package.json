@@ -2,10 +2,11 @@
   "name": "accent-helper-electronjs",
   "version": "1.0.0",
   "description": "Native desktop app that allows users to type accented characters with US keyboards written using ElectronJS.",
-  "main": "src/main/main.js",
+  "main": "dist/main/main.js",
   "scripts": {
-    "build": "esbuild ./src/renderer/app.js --bundle --outfile=dist/app.js --loader:.js=jsx",
-    "start": "electron-forge start",
+    "build:renderer": "tsc --noEmit --project tsconfig.renderer.json && esbuild src/renderer/app.ts --bundle --outfile=dist/renderer/app.js --loader:.js=jsx && cp src/index.html dist/index.html && cp src/styles.css dist/styles.css",
+    "build:main": "tsc --project tsconfig.main.json",
+    "start": "electron dist/main/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
     "make": "electron-forge make"
@@ -29,8 +30,14 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.7.0",
     "@electron-forge/plugin-fuses": "^7.7.0",
     "@electron/fuses": "^1.8.0",
+    "@types/electron": "^1.4.38",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "electron": "^34.2.0",
-    "esbuild": "0.25.0"
+    "esbuild": "0.25.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
