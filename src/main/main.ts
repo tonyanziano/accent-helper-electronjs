@@ -14,7 +14,6 @@ const createWindow = () => {
     icon: join(__dirname, '../../resources/256x256-icon.ico'),
   });
 
-  console.log('loading window');
   win.loadFile(join(__dirname, '../../dist/index.html'));
 };
 
@@ -47,7 +46,6 @@ app.whenReady().then(() => {
     }
   });
 
-  console.log('creating window');
   createWindow();
 });
 

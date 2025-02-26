@@ -5,7 +5,7 @@
   "main": "dist/main/main.js",
   "scripts": {
     "build:renderer": "tsc --noEmit --project tsconfig.renderer.json && esbuild src/renderer/app.ts --bundle --outfile=dist/renderer/app.js --loader:.js=jsx && cp src/index.html dist/index.html && cp src/styles.css dist/styles.css",
-    "build:main": "tsc --project tsconfig.main.json",
+    "build:main": "tsc --project tsconfig.main.json && cp src/main/preload.js dist/main/preload.js",
     "start": "electron dist/main/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
