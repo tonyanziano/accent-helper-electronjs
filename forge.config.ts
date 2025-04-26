@@ -4,6 +4,7 @@ const { join } = require('path');
 
 module.exports = {
   packagerConfig: {
+    name: "AccentMarkHelper",
     asar: true,
     icon: join(__dirname, 'resources/256x256-icon.ico'),
   },
@@ -11,7 +12,11 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        exe: "AccentMarkHelper.exe",
+        loadingGif: join(__dirname, 'resources/install-anim.gif'),
+        setupIcon: join(__dirname, 'resources/32x32-icon.ico'),
+      },
     },
     {
       name: '@electron-forge/maker-zip',
