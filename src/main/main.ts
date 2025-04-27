@@ -1,6 +1,7 @@
 import { join } from 'path';
 import { app, BrowserWindow, ipcMain, clipboard, Menu, globalShortcut, screen } from 'electron';
 import { WINDOW_HEIGHT, WINDOW_WIDTH, CURSOR_OFFSET_X, CURSOR_OFFSET_Y } from './constants';
+import { handleSquirrelStartupEvents } from './handleSquirrelStartupEvents';
 
 let win: BrowserWindow | undefined;
 const createWindow = () => {
@@ -27,6 +28,11 @@ ipcMain.on('write-text-to-clipboard', (_ev, { text }) => {
 Menu.setApplicationMenu(null);
 
 app.whenReady().then(() => {
+  // handle first-time startup events from the squirrel installer / update / uninstall flow
+  if (handleSquirrelStartupEvents(app)) {
+    process.exit();;
+  }
+
   // setup shortcuts
   globalShortcut.register('CommandOrControl+Shift+`', () => {
     console.log('Got global shortcut for tilde');
