@@ -55,5 +55,7 @@ app.whenReady().then(() => {
   createWindow();
 });
 
-// cleanup on quit
-app.on('quit', globalShortcut.unregisterAll);
+app.on('will-quit', () => {
+  // cleanup shortcuts on quit
+  globalShortcut.unregisterAll();
+});
