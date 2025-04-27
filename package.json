@@ -4,8 +4,10 @@
   "description": "Native desktop app that allows users to type accented characters with US keyboards written using ElectronJS.",
   "main": "dist/main/main.js",
   "scripts": {
+    "build": "yarn build:renderer && yarn build:main && yarn copy-icon",
     "build:renderer": "tsc --noEmit --project tsconfig.renderer.json && esbuild src/renderer/app.ts --bundle --outfile=dist/renderer/app.js --loader:.js=jsx && cp src/index.html dist/index.html && cp src/styles.css dist/styles.css",
     "build:main": "tsc --project tsconfig.main.json && cp src/main/preload.js dist/main/preload.js",
+    "copy-icon": "rm -rf dist/resources && mkdir dist\\resources && cp resources/32x32-icon.ico dist/resources",
     "start": "electron dist/main/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
