@@ -1,6 +1,6 @@
 {
   "name": "accent-helper-electronjs",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Native desktop app that allows users to type accented characters with US keyboards written using ElectronJS.",
   "main": "dist/main/main.js",
   "scripts": {
