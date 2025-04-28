@@ -1,8 +1,12 @@
 - Consider toggling window visibility after clicking a character button
   - This UX might be bad if the user wants to copy another character shortly after, they will have to re-show the window
+  - Might be possible to use a pop-up menu with only the characters for a specific letter when pressing a keybind
+    - ex. User presses "~ + A" and a menu with only the accented A characters pops up, clicking one copies to clipboard and then closes the menu
 - Look into if it's possible to blur the window after clicking a character (or possibly hitting hotkey) then re-focusing previous
   app window and using the https://github.com/kwhat/libuiohook/ library to send the "Ctrl + V" keyboard input to paste the character 
   directly into the previous app
+    - need to call Windows SendInput() function (https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput)
+    - can look at Windows CharMap for unicode value of each special character
 - Settings page?
   - Light mode
   - Change keybinds?
