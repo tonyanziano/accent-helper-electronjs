@@ -31,6 +31,18 @@ module.exports = {
       config: {},
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github', 
+      config: {
+        repository: {
+          owner: 'tonyanziano',
+          name: 'accent-helper-electronjs',
+        },
+        prerelease: true,
+      }
+    }
+  ],
   plugins: [
     {
       name: '@electron-forge/plugin-auto-unpack-natives',
