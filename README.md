@@ -20,7 +20,6 @@ Native desktop app for Windows that allows users to type accented characters wit
 ## Roadmap
 
 - Integrate with native Windows APIs to paste the character for you without needing to manually copy and paste
-- Shortcuts for individual keys (ex. pressing `Alt + ' + e` will copy è to clipboard directly without having to bring up the menu)
 - Light mode
 - Settings page?
 

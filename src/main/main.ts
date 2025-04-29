@@ -2,9 +2,9 @@ import { join } from 'path';
 import { app, BrowserWindow, ipcMain, clipboard, Menu, globalShortcut, screen, Tray } from 'electron';
 import { WINDOW_HEIGHT, WINDOW_WIDTH, CURSOR_OFFSET_X, CURSOR_OFFSET_Y } from './constants';
 import { handleSquirrelStartupEvents } from './handleSquirrelStartupEvents';
-
-// TODO: persist this in settings somewhere
-let enabled = true;
+import { uIOhook, UiohookKey } from 'uiohook-napi';
+import { registerShortcutsForCharacters } from './registerShortcutsForCharacters';
+import { getStateManager } from './inMemoryStateManager';
 
 let win: BrowserWindow | undefined;
 const createWindow = () => {
@@ -40,9 +40,9 @@ app.whenReady().then(() => {
   const trayIconPath = app.isPackaged ? join(__dirname, '../resources/32x32-icon.ico') : join(__dirname, '../../resources/32x32-icon.ico'); 
   const tray = new Tray(trayIconPath);
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Enable', type: 'radio', checked: enabled, click: () => enabled = true },
-    { label: 'Disable', type: 'radio', checked: !enabled, click: () => {
-        enabled = false;
+    { label: 'Enable', type: 'radio', checked: getStateManager().appEnabled, click: () => getStateManager().appEnabled = true },
+    { label: 'Disable', type: 'radio', checked: !getStateManager().appEnabled, click: () => {
+        getStateManager().appEnabled = false;
         if (win?.isVisible()) {
           win.hide();
         }
@@ -57,7 +57,7 @@ app.whenReady().then(() => {
   // setup shortcuts
   globalShortcut.register('CommandOrControl+Shift+`', () => {
     console.log('Got global shortcut for tilde');
-    if (!win || !enabled) {
+    if (!win || !getStateManager().appEnabled) {
       return;
     }
 
@@ -72,6 +72,17 @@ app.whenReady().then(() => {
       win.show();
     }
   });
+  globalShortcut.register('CommandOrControl+]', () => {
+    console.log('Trying to paste');
+
+    clipboard.writeText('HELLO FROM THE APP!');
+    uIOhook.keyTap(UiohookKey.V, [UiohookKey.Ctrl]);
+  });
+  
+  // TODO: enable once we figure out better UX
+  // registerShortcutsForCharacters();
+
+  uIOhook.start();
 
   createWindow();
 });
@@ -79,4 +90,5 @@ app.whenReady().then(() => {
 app.on('will-quit', () => {
   // cleanup shortcuts on quit
   globalShortcut.unregisterAll();
+  uIOhook.stop();
 });
