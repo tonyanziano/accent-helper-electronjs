@@ -43,11 +43,17 @@ app.whenReady().then(() => {
   const trayIconPath = app.isPackaged ? join(__dirname, '../resources/32x32-icon.ico') : join(__dirname, '../../resources/32x32-icon.ico'); 
   const tray = new Tray(trayIconPath);
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Enable', type: 'radio', checked: getStateManager().appEnabled, click: () => getStateManager().appEnabled = true },
+    { label: 'Enable', type: 'radio', checked: getStateManager().appEnabled, click: () => {
+        getStateManager().appEnabled = true;
+        if (!(win?.isVisible())) {
+          win?.show();
+        } 
+      }
+    },
     { label: 'Disable', type: 'radio', checked: !getStateManager().appEnabled, click: () => {
         getStateManager().appEnabled = false;
         if (win?.isVisible()) {
-          win.hide();
+          win?.hide();
         }
       }
     },
@@ -59,29 +65,15 @@ app.whenReady().then(() => {
 
   // setup shortcuts
   globalShortcut.register('CommandOrControl+Shift+`', () => {
-    console.log('Got global shortcut for tilde');
     if (!win || !getStateManager().appEnabled) {
       return;
     }
 
     // get the cursor's position to calculate where to place the window
     const { x: cursorX, y: cursorY } = screen.getCursorScreenPoint();
-
-    // toggle with window visibility
-    if (win.isVisible()) {
-      win.hide();
-    } else {
-      win.setPosition(cursorX + CURSOR_OFFSET_X, cursorY + CURSOR_OFFSET_Y);
-      win.show();
-    }
+    win.setPosition(cursorX + CURSOR_OFFSET_X, cursorY + CURSOR_OFFSET_Y);
+    win.focus();
   });
-  globalShortcut.register('CommandOrControl+]', () => {
-    console.log('Trying to paste');
-
-    clipboard.writeText('HELLO FROM THE APP!');
-    uIOhook.keyTap(UiohookKey.V, [UiohookKey.Ctrl]);
-  });
-  
   // TODO: enable once we figure out better UX
   // registerShortcutsForCharacters();
 
