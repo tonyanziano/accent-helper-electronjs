@@ -22,9 +22,12 @@ const createWindow = () => {
 };
 
 // setup IPC handlers
-ipcMain.on('write-text-to-clipboard', (_ev, { text }) => {
-  clipboard.writeText(text);
-  console.log(`Wrote ${text} to clipboard.`);
+ipcMain.on('write-character', (_ev, { character }) => {
+  // write character to clipboard then simulate "Ctrl + V" to paste to currently active application
+  clipboard.writeText(character);
+  console.log(`Wrote ${character} to clipboard.`);
+  win?.blur(); // put focus back on previous window
+  uIOhook.keyTap(UiohookKey.V, [UiohookKey.Ctrl]);
 });
 
 // hide the menu bar

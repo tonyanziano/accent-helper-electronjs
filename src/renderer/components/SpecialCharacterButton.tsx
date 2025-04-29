@@ -7,9 +7,7 @@ type SpecialCharacterButtonProps = {
 
 export const SpecialCharacterButton: React.FC<SpecialCharacterButtonProps> = ({ text }) => {
   const handleOnClick = useCallback(() => {
-    console.log('clicked button');
-    window.clipboard.writeTextToClipboard(text);
-    console.log('wrote to clipboard');
+    window.clipboard.writeCharacter(text);
   }, [text]);
 
   return <button className='special-character-button' onClick={handleOnClick}>{text}</button>;
