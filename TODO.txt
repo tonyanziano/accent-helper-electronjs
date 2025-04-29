@@ -5,3 +5,4 @@
 - Settings page?
   - Light mode
   - Change keybinds?
+- Consider making the UI a modal window or float on top of other windows even if it loses focus for better UX
