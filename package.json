@@ -5,10 +5,10 @@
   "main": "dist/main/main.js",
   "scripts": {
     "build": "yarn build:renderer && yarn build:main && yarn copy-icon",
-    "build:renderer": "tsc --noEmit --project tsconfig.renderer.json && esbuild src/renderer/app.ts --bundle --outfile=dist/renderer/app.js --loader:.js=jsx && cp src/index.html dist/index.html && cp src/styles.css dist/styles.css",
-    "build:main": "tsc --project tsconfig.main.json && cp src/main/preload.js dist/main/preload.js",
+    "build:renderer": "tsc --noEmit --project tsconfig.renderer.json && esbuild src/renderer/app.ts --bundle --outfile=dist/renderer/app.js --loader:.js=jsx && cp src/*.html dist && cp src/*.css dist",
+    "build:main": "tsc --project tsconfig.main.json && cp src/main/*.js dist/main",
     "copy-icon": "rm -rf dist/resources && mkdir dist\\resources && cp resources/32x32-icon.ico dist/resources",
-    "start": "electron dist/main/main.js",
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
     "make": "electron-forge make",

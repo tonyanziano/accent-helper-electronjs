@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>About AccentHelper</title>
+    <link href="./about.css" rel="stylesheet" />
+    <script>
+      // hydrate HTML
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('version').innerHTML = `App version: ${window.version.app}`;
+        document.getElementById('electron').innerHTML = `Electron version: ${window.version.electron}`;
+        document.getElementById('chrome').innerHTML = `Chrome version: ${window.version.chrome}`;
+        document.getElementById('windows').innerHTML = `Windows version: ${window.version.os}`;
+      });
+    </script>
+  </head>
+  <body>
+    <span>AccentHelper</span>
+    <span>Author: Tony Anziano</span>
+    <span id="version"></span>
+    <span id="electron"></span>
+    <span id="chrome"></span>
+    <span id="windows"></span>
+    <a target="_blank" href="https://www.paypal.com/donate/?business=4D4ACLWZVZLCN&no_recurring=0&item_name=Thank+you+for+donating%2C+it+means+a+lot+and+I+really+appreciate+it%21&currency_code=USD">
+      If you like the app and would like to donate, click here. Thank you!
+    </a>
+    <a target="_blank" href="https://github.com/tonyanziano/accent-helper-electronjs/issues">
+      Report a bug or suggest a new feature.
+    </a>
+  </body>
+</html>

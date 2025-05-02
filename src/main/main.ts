@@ -5,6 +5,7 @@ import { handleSquirrelStartupEvents } from './handleSquirrelStartupEvents';
 import { uIOhook, UiohookKey } from 'uiohook-napi';
 import { registerShortcutsForCharacters } from './registerShortcutsForCharacters';
 import { getStateManager } from './inMemoryStateManager';
+import { showAboutWindow } from './showAboutWindow';
 
 let win: BrowserWindow | undefined;
 const createWindow = () => {
@@ -57,6 +58,8 @@ app.whenReady().then(() => {
         }
       }
     },
+    { type: 'separator' },
+    { label: 'About', click: showAboutWindow },
     { type: 'separator' },
     { label: 'Quit AccentHelper', click: app.quit }
   ]);
